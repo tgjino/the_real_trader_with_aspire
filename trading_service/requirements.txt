@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+requests
+pandas
+fyers-apiv3
+python-dotenv
+selenium
+webdriver-manager
+fastapi 
+uvicorn
