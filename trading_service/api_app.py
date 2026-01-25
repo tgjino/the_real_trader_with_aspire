@@ -58,6 +58,13 @@ def get_price():
     data = fetch_data(fyers)
     return {"symbol":"NIFTY 50","lp":data}
 
+@app.get("/stocks")
+def get_stocks():
+    return [
+        {"symbol": "NSE:RELIANCE-EQ", "price": random.randint(2400, 2600)},
+        {"symbol": "NSE:TCS-EQ", "price": random.randint(3300, 3500)}
+    ]
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     uvicorn.run(app, host="0.0.0.0", port=port)
