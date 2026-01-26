@@ -1,0 +1,11 @@
+{
+  "name": "Dotnet Aspire Dev Container",
+  "features": {
+    "ghcr.io/devcontainers/features/dotnet:2": {
+      "version": "9.0.310",
+      "additionalWorkloads": "aspire web wasm-tools"
+    }
+  }
+}
+
+
