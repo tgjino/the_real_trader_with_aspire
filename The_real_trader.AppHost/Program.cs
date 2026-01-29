@@ -17,5 +17,5 @@ builder.AddProject<Projects.The_real_trader_Web>("webfrontend")
     .WithExternalHttpEndpoints()
     .WithReference(apiService)
     .WithReference(tradingService);
-
+    
 builder.Build().Run();
