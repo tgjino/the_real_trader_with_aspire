@@ -14,7 +14,7 @@ def init_db():
 def save_token(token):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    cursor.execure('INSERT OF REPLACE INT config (key, value) VALUES ('access_token', ?)' (token,))
+    cursor.execure("INSERT OF REPLACE INT config (key, value) VALUES ('access_token', ?)", (token,))
     conn.commit()
     conn.close()
 
