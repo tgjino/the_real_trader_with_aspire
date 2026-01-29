@@ -1,65 +1,48 @@
-from fyers_apiv3 import fyersModel
-from dotenv import load_dotenv
 import os
-import webbrowser
-# import urllib.parse as urlparse
+import logging
+from fyers_apiv3 import fyersModel
+import db_manager
 
-load_dotenv()
+logger = logging.getlogger("TradingBot.Auth")
 
-def generate_new_token():
-    client_id = os.getenv("CLIENT_ID")
-    secret_key = os.getenv("SECRET_KEY")
-    redirect_url = os.getenv("REDIRECT_URL") 
+def get_session():
+    client_id = os.getenv("client_id")
+    secrete_key = os.getenv("secret_key")
+    redirect_uri = os.getenv("redirect_uri")
 
-    session = fyersModel.SessionModel(
+    return fyersModel.SessionModel(
         client_id = client_id,
-        secret_key = secret_key,
-        redirect_uri = redirect_url,
-        response_type="code",
-        grant_type="authorization_code"
-        )                                               
+        secrete_key = secrete_key,
+        redirect_uri = redirect_uri,
+        response_type = "code",
+        grant_type = "authorization_code"
+    )
 
-    auth_url = session.generate_authcode()
-    print(f" the auth url = {auth_url}")
-    webbrowser.open(auth_url)
+def generate_new_token_step1():
+    session = get_session()
+    auth_url = session.generate_auth_url()
+    logger.info("Login URL generated successfully")
+    return auth_url
 
-    response_url = input("paste the generated URL here...")
-    # auth_code = response_url.split('auth_code=')[1].split('&')[0]
-    # print(f" the auth code.......... = {auth_code}")
+def generate_new_token_step2(auth_code):
+    
+    session = get_session()
+    session.set_token(auth_code)
 
     try:
-        auth_code = response_url.split('auth_code=')[1].split('&')[0]
-        print(f" the auth code.......... = {auth_code}")
-
-        if auth_code:
-            # print(f"authentication code generated: {response_url}")
-
-            # 5. ലഭിച്ച auth_code ഉപയോഗിച്ച് ആക്സസ് ടോക്കൺ ഉണ്ടാക്കുന്നു
-            session.set_token(auth_code)
-            response = session.generate_token()
-            if 'access_token' in response:
-                new_token = response['access_token']
-                fyers = fyersModel.FyersModel(client_id=client_id, token=new_token, log_path="")
-                profile = fyers.get_profile()
-
-                if profile.get('s') == 'ok':
-                    with open("access_token.txt","w") as f:
-                        f.write(new_token)
+        response = session.generate_token()
+        if response and response.get('s') == 'ok':
+            access_token = response.get('access_token')
+            db_manager.save_token(access_token)
+            logger.into("Access Token generated and saved to database")
+            return True
+        
+        else:
+            logger.error(f"Token generation failed:{response}")
+            return False
             
-                    print(f"✅ Login Success! Welcome {profile.get('data', {}).get('name')}")
-                    return True
-                else:
-                    error_msg = profile.get('message', 'Validation Failed')
-                    print(f"❌ API Error (Token): {error_msg}")
-                    print(f"DEBUG: Full Response from Fyers: {profile}")
-                    return False
-            else:
-                error_message = response.get('message', 'Check Secret Key or Client ID')
-                print(f"❌ API Error: {error_message}")          
-                return False
-    
     except Exception as e:
-        print(f"Error: check the URL link......({str(e)})")
+        logger.error(f"Error in step 2: {str(e)}")
         return False
 
         
