@@ -14,7 +14,7 @@ def init_db():
 def save_token(token):
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    cursor.execure("INSERT OF REPLACE INT config (key, value) VALUES ('access_token', ?)", (token,))
+    cursor.execute("INSERT OF REPLACE INTO settings (key, value) VALUES ('access_token', ?)", (token,))
     conn.commit()
     conn.close()
 
@@ -26,6 +26,7 @@ def get_token():
         row = cursor.fetchone()
         conn.close()
         return row[0] if row else None
-    except:
+    except Exception as e:
+        print(f"Error fetching token: {e}")
         return None
     
