@@ -7,7 +7,7 @@ logger = logging.getLogger("TradingBot.Auth")
 
 def get_session():
     client_id = os.getenv("client_id")
-    secrete_key = os.getenv("secret_key")
+    secret_key = os.getenv("secret_key")
     redirect_uri = os.getenv("redirect_uri")
 
     return fyersModel.SessionModel(

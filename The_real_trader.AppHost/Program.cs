@@ -2,7 +2,7 @@ using Aspire.Hosting;
 using Aspire.Hosting.Python;
 var builder = DistributedApplication.CreateBuilder(args);
 
-var tradingService = builder.AddPythonProject("trading-service", "../trading_service", "api_app.py")
+var tradingService = builder.AddPythonProject("trading-service", "../trading_service","venv/bin/python","api_app.py")
                             .WithHttpEndpoint(targetPort: 5000)
                             .WithExternalHttpEndpoints()
                             .WithEnvironment("client_id", builder.Configuration["Fyers:ClientId"])

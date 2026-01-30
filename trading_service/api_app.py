@@ -54,12 +54,12 @@ def callback(auth_code: str = None):
 
 @app.websocket("/ws/price")
 async def price_stream(websocket:WebSocket):
-    await webocket.accept()
+    await websocket.accept()
     try:
         while True:
             fyers =get_valid_fyers()
             price = main.fetch_data(fyers) if fyers else "Not Auth"
-            await webocket.send_json({"nifty":price})
+            await websocket.send_json({"nifty":price})
             await asyncio.sleep(1)
     
     except WebSocketDisconnect:
