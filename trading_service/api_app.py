@@ -18,7 +18,7 @@ app = FastAPI(title="NSE Trading Bot API")
 
 @app.on_event("startup")
 def startup_event():
-    db_manager.int_db()
+    db_manager.init_db()
     logger.info("Database initialized")
 
 def get_valid_fyers():
@@ -53,7 +53,7 @@ def callback(auth_code: str = None):
     return {"error":"Token failed"}
 
 @app.websocket("/ws/price")
-async def price_stream(webocket:WebSocket):
+async def price_stream(websocket:WebSocket):
     await webocket.accept()
     try:
         while True:
@@ -83,4 +83,5 @@ def get_price():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    uvicorn.run(app, host="0.0.0.0", port=port, reload=True)
+    uvicorn.run(app, host="0.0.0.0", port=port)
+                                    #  reload=True
