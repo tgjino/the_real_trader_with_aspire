@@ -7,7 +7,7 @@ var tradingService = builder.AddPythonProject("trading-service", "../trading_ser
                             .WithEnvironment("PORT", "5000")
                             .WithEnvironment("client_id", builder.Configuration["Fyers:ClientId"])
                             .WithEnvironment("secret_key", builder.Configuration["Fyers:SecretKey"])
-                            .WithEnvironment("redirect_uri", builder.Configuration["Fyers:RedirectUri"])
+                            .WithEnvironment("redirect_uri", "https://studious-spoon-v9p5xpvvwq53wxvw-5000.app.github.dev/callback")
                             .WithDataVolume("trading_storage", "/app/data")
                             .WithEnvironment("DB_PATH", "/app/data/trading.db");
                             
