@@ -1,15 +1,22 @@
+#python
 .venv/
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+venv/
+.env
 # .NET / Aspire
 bin/
 obj/
 TestResults/
+
 .vs/
 .vscode/
 *.user
 *.userosscache
 *.sln.docstates
+.DS_Store
 
 # Aspire Dashboard storage
 .aspire/
@@ -21,3 +28,4 @@ yarn-debug.log*
 yarn-error.log*
 .env
 .npm
+

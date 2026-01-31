@@ -29,4 +29,33 @@ def get_token():
     except:
         return None
     
-    
+#    launchSettings.json file codes  
+    {
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "https": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:17273;http://localhost:15169",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_ENVIRONMENT": "Development",
+        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21252",
+        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22266"
+      }
+    },
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:15169",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DOTNET_ENVIRONMENT": "Development",
+        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19005",
+        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://localhost:20156"
+      }
+    }
+  }
+}
