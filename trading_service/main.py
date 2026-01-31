@@ -3,6 +3,13 @@ import logging
 from fyers_apiv3 import fyersModel
 
 logger = logging.getLogger("TradingBot.Main")
+print("--- Python Service Starting ---")
+
+redirect_uri = os.getenv('redirect_uri')
+print(f"Configured Redirect URI: {redirect_uri}")
+
+
+print("Service is running and waiting for requests...")
 
 def get_fyers_instance(token):
     client_id = os.getenv("client_id")
@@ -21,7 +28,7 @@ def check_token_validity(fyers):
             return True
         logger.warning("Token expired or invalid")
 
-    except Exception:
+    except Exception as e :
         logger.error(f"Validity check failed:{str(e)}")
         return False
 

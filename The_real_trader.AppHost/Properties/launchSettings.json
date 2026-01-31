@@ -5,29 +5,32 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "http://0.0.0.0:15000",
+      "applicationUrl": "https://0.0.0.0:15001;http://0.0.0.0:15000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "http://0.0.0.0:15000",
-        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "https://localhost:21252",
-        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "https://localhost:22266"                                 
+        "ASPNETCORE_URLS": "https://0.0.0.0:15001;http://0.0.0.0:15000",
+        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:18888",
+        "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://127.0.0.1:19999",
+        "ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true",
+        "DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS": "true"
       }
     },
     "http": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "applicationUrl": "http://0.0.0.0:15000",
+      "applicationUrl": "http://localhost:15000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DOTNET_ENVIRONMENT": "Development",
-        "ASPNETCORE_URLS": "http://0.0.0.0:15000",
-        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:19005",
+        "ASPNETCORE_URLS": "http://0.0.0.0:17170",
+        "DOTNET_DASHBOARD_OTLP_ENDPOINT_URL": "http://localhost:18888",
         "DOTNET_RESOURCE_SERVICE_ENDPOINT_URL": "http://127.0.0.1:19999",
         "ASPIRE_ALLOW_UNSECURED_TRANSPORT": "true",
         "DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS": "true"
       }
+    
     }
   }
 }
