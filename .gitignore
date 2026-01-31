@@ -1,4 +1,5 @@
 #python
+trading_service/venv/
 .venv/
 __pycache__/
 *.pyc
